@@ -7,36 +7,45 @@ using System.Threading.Tasks;
 namespace EmployeeWageProblem
 {
 
-
-    public static void CheckAttendance()
+    public class EmployeeAttendence
     {
-        int IS_FULL_TIME = 1;
-        int IS_PART_TIME = 2;
-        int EMP_RATE_PER_HOUR = 20;
 
-        int empHrs = 0;
-        int empWage = 0;
-
-        Random random = new Random();
-        int empCheck = random.Next(3);
-
-        if(empCheck== IS_FULL_TIME)
+        public static void CheckAttendance()
         {
-            Console.WriteLine("Employee is Present");
-            empHrs = 8;
-        }
-        else if(empCheck==IS_FULL_TIME)
-        {
-            Console.WriteLine("Employee is Part time");
-            empHrs = 4;
-        }
-        else
-        {
-            Console.WriteLine("Employee is Absent");
-            empHrs = 0; 
-        }
-        empWage = empHrs * EMP_RATE_PER_HOUR;
+            const int IS_FULL_TIME = 1;
+            const int IS_PART_TIME = 2;
+            int EMP_RATE_PER_HOUR = 20;
+            const int NUM_OF_WORKING_DAYS = 3;
 
-        Console.WriteLine("Emp Wage: " + empWage);
+            int empHrs = 0;
+            int empWage = 0;
+            int totalEmpWage = 0;
+
+            for (int i = 0; i < NUM_OF_WORKING_DAYS; i++)
+            {
+
+                Random random = new Random();
+                int empCheck = random.Next(3);
+                switch (empCheck)
+                {
+                    case IS_FULL_TIME:
+                        empHrs = 8;
+                        break;
+                    case IS_PART_TIME:
+                        empHrs = 4;
+                        break;
+                    case 0:
+                        empHrs = 0;
+                        break;
+                }
+                empWage = empHrs * EMP_RATE_PER_HOUR;
+                totalEmpWage += empWage;
+
+                //totalEmpWage = totalEmpWage + empWage;
+
+                console.WriteLine("The Employee Wage " + empWage);
+            }
+            Console.WriteLine("Total Employee Wage " + totalempWage);
+        }
     }
 }
